@@ -1,0 +1,29 @@
+server:
+  port: 9001
+spring:
+  boot:
+    admin:
+      client:
+        instance:
+          management-base-url: http://localhost:8761
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: CHECK-SERVICE
+          uri: http://localhost:8082
+#      maybe in future    uri: lb://CHECK-SERVICE
+          predicates:
+            - Path=/hello/**
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
