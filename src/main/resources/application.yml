@@ -13,10 +13,8 @@ spring:
       routes:
         - id: CHECK-SERVICE
           uri: http://localhost:8082
-#      maybe in future    uri: lb://CHECK-SERVICE
           predicates:
             - Path=/hello/**
-
 
 eureka:
   client:
@@ -27,3 +25,12 @@ eureka:
   instance:
     prefer-ip-address: true
     hostname: localhost
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+#            route:
+#              RouteDefinitionLocator: INFO
